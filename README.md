@@ -7,5 +7,5 @@ announcing waypoints on the way.
 
 ## Requirements
 
-- Delaunay Path Planner Core Library
+- [lart_common](https://github.com/FSIPLEIRIA/lart_common.git)
 - Others to be defined...
