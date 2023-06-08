@@ -7,4 +7,4 @@ find_package(lart_common REQUIRED)
 
 include_directories(include)
 
-add_library(pure_pursuit_core main.cpp src/PathTracker.cpp include/path_tracker/PathTracker.h)
+add_library(pure_pursuit_core SHARED src/PathTracker.cpp src/Math.cpp)
