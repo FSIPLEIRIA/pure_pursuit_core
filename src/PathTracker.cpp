@@ -79,8 +79,7 @@ namespace path_tracker {
 
                 this->pointPublishingCallback(current);
             }
-
-            // TODO: this stop condition is broken, it will stop 1 iteration before
+            
         } while(!shouldStop); // stop when the pair being computed ends on the path end
 
     }
