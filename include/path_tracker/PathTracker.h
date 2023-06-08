@@ -7,7 +7,9 @@
 
 #include <lart_common/Point.h>
 #include <lart_common/Path.h>
+#include <path_tracker/Math.h>
 #include <functional>
+#include <thread>
 
 namespace path_tracker {
 
@@ -18,13 +20,23 @@ namespace path_tracker {
             /*! \brief Point publishing rate in Hz. */
             int rate;
 
+            /*! \brief Was the rate already set? */
+            bool rateSet;
+
             /*! \brief Callback function called on each tick. */
             std::function<void(lart_common::Point)> pointPublishingCallback = nullptr;
 
             /*! \brief The path to track. */
             lart_common::Path path;
 
+            /*! \brief Was the path already set? */
             bool pathSet = false;
+
+            /*! \brief Speed at which to track the trajectory in m/s. */
+            double speed;
+
+            /*! \brief Was the speed already set? */
+            bool speedSet = false;
 
         public:
             /*! \brief Set the publishing rate in Hz. */
@@ -35,6 +47,15 @@ namespace path_tracker {
 
             /*! \brief Set the path to track. */
             void setPath(const lart_common::Path& p);
+
+            /*! \brief Get the path being tracked. */
+            lart_common::Path getPath() const;
+
+            /*! \brief Set the tracking speed. */
+            void setSpeed(double s);
+
+            /*! \brief Get the set tracking speed. */
+            double getSpeed() const;
 
             /*! \brief Start the path tracking. */
             void start();
