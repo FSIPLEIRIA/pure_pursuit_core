@@ -8,7 +8,7 @@
 class MathTests : public ::testing::Test {
 
 };
-
+/* Tests calculateIncrement using a precalculated answer*/
 TEST_F(MathTests, testIncrement) {
 
     ASSERT_DOUBLE_EQ(-0.25, path_tracker::Math::calculateIncrement(-1, 1.5, 4));
