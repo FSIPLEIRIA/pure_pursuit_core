@@ -17,5 +17,4 @@ announcing waypoints on the way.
 - Create a `cmake-build-debug` subdirectory and navigate there.
 - Run the command `cmake ..`.
 - Run the command `make`.
-
-Installation rules are still not developed, so this library can't be installed on the system yet.
+- Run the command `sudo make install` to install the library on the system.
