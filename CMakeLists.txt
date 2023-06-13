@@ -14,3 +14,7 @@ target_link_libraries(pure_pursuit_core lart_common)
 
 add_executable(test test/PathTrackingTests.cpp test/PathTrackingTests.cpp test/MathTests.cpp)
 target_link_libraries(test pure_pursuit_core gtest gtest_main)
+
+install(TARGETS pure_pursuit_core LIBRARY DESTINATION /usr/lib/path_tracker)
+install(DIRECTORY include/path_tracker DESTINATION /usr/include)
+install(FILES pure_pursuit_coreConfig.cmake DESTINATION /usr/lib/path_tracker)
