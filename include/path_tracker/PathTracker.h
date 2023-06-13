@@ -45,6 +45,9 @@ namespace path_tracker {
             /*! \brief Get the set publishing rate. */
             int getRate() const;
 
+            /*! \brief Set the callback function to call whenever a point is published. */
+            void setPointCallback(const std::function<void(lart_common::Point)>& cb);
+
             /*! \brief Set the path to track. */
             void setPath(const lart_common::Path& p);
 

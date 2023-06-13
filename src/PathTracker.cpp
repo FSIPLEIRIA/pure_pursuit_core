@@ -9,6 +9,7 @@ namespace path_tracker {
         if(rate <= 0)
             throw std::runtime_error("An invalid rate was set!");
 
+        this->rateSet = true;
         this->rate = rate;
     }
 
@@ -17,6 +18,10 @@ namespace path_tracker {
             throw std::runtime_error("The rate was not set!");
 
         return rate;
+    }
+
+    void PathTracker::setPointCallback(const std::function<void(lart_common::Point)>& cb) {
+        this->pointPublishingCallback = cb;
     }
 
     void PathTracker::setPath(const lart_common::Path &p) {
@@ -64,10 +69,10 @@ namespace path_tracker {
             if(pointPair.second == pathList.back()->getPosition())
                 shouldStop = true;
 
-            // compute the increment which should be applied on each tick on this pair
-            std::pair<double,double> incrementVector = Math::calculateIncrementVector(pointPair, this->getSpeed(), this->getRate());
+            unsigned int nTicks = (unsigned int) ((double) pointPair.first.distanceTo(pointPair.second) / this->getSpeed()) * this->getRate();
 
-            unsigned int nTicks = (unsigned int) pointPair.first.distanceTo(pointPair.second) / this->getSpeed();
+            // compute the increment which should be applied on each tick on this pair
+            std::pair<double,double> incrementVector = Math::calculateIncrementVector(pointPair, this->getSpeed(), nTicks);
 
             for(unsigned int tick = 0; tick < nTicks; tick++) {
 
@@ -79,7 +84,9 @@ namespace path_tracker {
 
                 this->pointPublishingCallback(current);
             }
-            
+
+            std::cout << "END PAIR" << std::endl;
+
         } while(!shouldStop); // stop when the pair being computed ends on the path end
 
     }

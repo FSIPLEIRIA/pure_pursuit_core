@@ -13,12 +13,12 @@ namespace path_tracker {
     class Math {
 
         public:
-            /*! \brief Calculate the increment to apply on each tick based on the points distance, speed and rate. */
-            static double calculateIncrement(double distance, double speed, int rate);
+            /*! \brief Calculate the increment to apply on each tick based on the points distance, speed and number of ticks. */
+            static double calculateIncrement(double distance, double speed, unsigned int nTicks);
 
             /*! \brief Calculate the increment vector to apply on each tick. */
             static std::pair<double,double> calculateIncrementVector(std::pair<lart_common::Point,lart_common::Point> points,
-                                                                     double speed, int rate);
+                                                                     double speed, unsigned int nTicks);
     };
 
 } // path_tracker
